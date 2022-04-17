@@ -3,24 +3,8 @@ extends layout
 block content
 
   h1= title
-  -
-    let results = [
-      {
-        "yogurt_flavour": "Blueberry",
-        "yogurt_quantity": "10lb",
-        "yogurt_cost": 80
-      },
-      {
-        "yogurt_flavour": "Strawberry",
-        "yogurt_quantity": "30lb",
-        "yogurt_cost": 50
-      },
-      {
-        "yogurt_flavour": "Vanilla",
-        "yogurt_quantity": "30lb",
-        "yogurt_cost": 50
-      },                   
-    ]
+  p welcome to #{title}
+   - 
   div(class= "container-fluid")
     div(class = "row")
       each item,index in results

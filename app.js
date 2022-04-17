@@ -4,18 +4,56 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const connectionString = process.env.MONGO_CON 
+mongoose = require('mongoose'); 
+mongoose.connect(connectionString,  
+{useNewUrlParser: true, useUnifiedTopology: true});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var yogurtRouter = require('./routes/yogurt');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
+var yogurt = require("./models/yogurt");
+
+// We can seed the collection if needed on server start
+async function recreateDB(){
+  // Delete everything
+  await yogurt.deleteMany();
+ 
+  let instance1 = new
+ yogurt({yogurt_flavour:"Cheese", yogurt_quantity:10, 
+ yogurt_cost:50});
+  instance1.save( function(err,doc) {
+  if(err) return console.error(err);
+  console.log("First object saved")
+ });
+ 
+ let instance2 = new
+ yogurt({yogurt_flavour:"Tomato", yogurt_quantity:20, 
+ yogurt_cost:25});
+  instance2.save( function(err,doc) {
+  if(err) return console.error(err);
+  console.log("Second object saved")
+ });
+ 
+  let instance3 = new
+ yogurt({yogurt_flavour:"Salty", yogurt_quantity:30, 
+ yogurt_cost:150});
+  instance3.save( function(err,doc) {
+  if(err) return console.error(err);
+  console.log("Third object saved")
+ });
+ }
+ let reseed = true; 
+if (reseed) { recreateDB();}
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
+ 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
