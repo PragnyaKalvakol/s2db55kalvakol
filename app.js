@@ -22,7 +22,7 @@ async function recreateDB(){
   await yogurt.deleteMany();
  
   let instance1 = new
- yogurt({yogurt_flavour:"Cheese", yogurt_quantity:10, 
+ yogurt({yogurt_flavour:"Blueberry", yogurt_quantity:10, 
  yogurt_cost:50});
   instance1.save( function(err,doc) {
   if(err) return console.error(err);
@@ -30,7 +30,7 @@ async function recreateDB(){
  });
  
  let instance2 = new
- yogurt({yogurt_flavour:"Tomato", yogurt_quantity:20, 
+ yogurt({yogurt_flavour:"Vanilla", yogurt_quantity:20, 
  yogurt_cost:25});
   instance2.save( function(err,doc) {
   if(err) return console.error(err);
@@ -38,7 +38,7 @@ async function recreateDB(){
  });
  
   let instance3 = new
- yogurt({yogurt_flavour:"Salty", yogurt_quantity:30, 
+ yogurt({yogurt_flavour:"Strawberry", yogurt_quantity:30, 
  yogurt_cost:150});
   instance3.save( function(err,doc) {
   if(err) return console.error(err);
