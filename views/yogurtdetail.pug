@@ -1,0 +1,24 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  if(toShow == null)
+     h2 No instance to view details
+  else 
+  - let yogurtid = toShow._id 
+  - let yogurt_flavour = toShow.yogurt_flavour
+  - let yogurt_quantity = toShow.yogurt_quantity
+  - let yogurt_cost = toShow.yogurt_cost
+  div 
+    div.row 
+      div(class='yogurtAttr mr-3') yogurt ID is: 
+      div(class='values') #{yogurtid} 
+    div.row 
+      div(class='yogurtAttr mr-3') yogurt flavour is: 
+      div(class='values') #{yogurt_flavour} 
+    div.row 
+      div(class='yogurtAttr mr-3') yogurt quantity is: 
+      div(class='values') #{yogurt_quantity} 
+    div.row 
+      div(class='yogurtAttr mr-3') yogurt cost is: 
+      div(class='values') #{yogurt_cost} 

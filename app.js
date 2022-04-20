@@ -15,6 +15,7 @@ var yogurtRouter = require('./routes/yogurt');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var yogurt = require("./models/yogurt");
+var resourceRouter = require("./routes/resource");
 
 // We can seed the collection if needed on server start
 async function recreateDB(){
@@ -65,6 +66,7 @@ app.use('/users', usersRouter);
 app.use('/yogurt', yogurtRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

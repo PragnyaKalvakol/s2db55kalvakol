@@ -6,3 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
+
+.yogurtAttr { 
+  background-color: aquamarine; 
+  border: outset;
+  font-size: small;
+  width: 120px; 
+} 
+
+.values {
+  border: outset;
+  width: 170px;
+  border-color: rgb(255, 127, 195);
+  margin-top: 12px;
+  margin-bottom: 12px;
+  font-size: small;
+
+}

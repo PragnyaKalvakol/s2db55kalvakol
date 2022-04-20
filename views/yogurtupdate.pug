@@ -1,0 +1,47 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  if(toShow == null)
+       h2 No instance to view update 
+  else
+ 
+  - let yogurtid = toShow._id 
+  - let yogurt_flavour = toShow.yogurt_flavour 
+  - let yogurt_cost = toShow.yogurt_cost
+  - let yogurt_quantity = toShow.yogurt_quantity
+  
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{yogurtid} 
+  - let actionid = "/resource/yogurt/" + yogurtid 
+  form(id='yogurtForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.yogurtAttr(for='yogurt_flavour') yogurt flavour
+        input#yogurt_flavour(type='text', name='yogurt_flavour', value= yogurt_flavour ) 
+    div.form-group 
+        label.yogurtAttr(for='yogurt_quantity') yogurt quantity
+        input#yogurt_quantity(type='text', name='size', value= yogurt_quantity ) 
+    div.form-group 
+        label.yogurtAttr(for='yogurt_cost') yogurt_cost 
+        input#yogurt_cost(type='number', name='yogurt_cost', value= yogurt_cost ) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['yogurtForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 
