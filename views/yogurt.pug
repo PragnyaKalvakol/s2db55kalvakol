@@ -1,34 +1,21 @@
-//- extends layout
-
-//- block content
-
-//-   h1= title
-//-   p welcome to #{title}
-//-    - let items = results
-//-   div(class= "container-fluid")
-//-     div(class = "row")
-//-       each item,index in results
-//-         div(class= "col-sm-2" , onclick=`buy(${index})`) #{item.yogurt_flavour}<br>
-//-         div(class= "col-sm-2", onclick=`buy(${index})`) #{item.yogurt_quantity}<br>
-//-         div(class= "col-sm-2", onclick=`buy(${index})`) #{item.yogurt_cost}<br>
-
-//-   script.
-//-     function buy(itemNum){
-//-       alert(`You purchased item ${itemNum+1}`)
-//-     }
-
 extends layout
 
 block content
   h1= title
   p Welcome to #{title}
   - let items = results
+  - let des = `dispatch(\"/yogurt/create\")`
+  button.btn( class="btn-secondary m-1" onclick= des) Create
   div(class="container-fluid")
     div(class="col m-1")
       each yogurt, index in items
-          - let destination = `dispatch(\"/mobile/update?id=${yogurt._id}\")`
-          div(class="row-sm-2" class="m-1")  Item #{yogurt.yogurt_flavour}(#{yogurt.yogurt_quantity}) is $#{yogurt.yogurt_cost}
+          - let destination = `dispatch(\"/yogurt/update?id=${yogurt._id}\")`
+          - let destination1 = `dispatch(\"/yogurt/detail?id=${yogurt._id}\")`
+          - let destination2 = `dispatch(\"/yogurt/delete?id=${yogurt._id}\")`
+          div(class="row-sm-2" class="m-1")  Item #{yogurt.yogurt_brand}(#{yogurt.yogurt_color}) is $#{yogurt.yogurt_cost}
           button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-success m-1", onclick= destination1) Details
+          button.btn( class="btn-danger m-1", onclick= destination2) Delete
   
   script. 
     function dispatch(path){ 

@@ -1,17 +1,28 @@
-extends layout
+//- extends layout
 
-block content
+//- block content
 
-  h1= title
-  p Welcome to Pug
-  button(type = "button", class = "btn btn-warning", onClick = "moreClaps()") Press Me
-  div(id = "target") Clap for me
+//-   h1= title
+//-   p Welcome to Pug
+//-   button(type = "button", class = "btn btn-warning", onClick = "moreClaps()") Press Me
+//-   div(id = "target") Clap for me
 
-    script.
-      var clap_count = 0;
-      function moreClaps(){
-        clap_count = clap_count + 2;
-        document.getElementById("target").innerHTML = 'Clap '+ clap_count +' times';
-      }
-      - var yogurt= ['yogurt_flavour','yogurt_quantity','yogurt_price']
-  a(href='/yogurt') Click here to search for yogurt
+//-     script.
+//-       var clap_count = 0;
+//-       function moreClaps(){
+//-         clap_count = clap_count + 2;
+//-         document.getElementById("target").innerHTML = 'Clap '+ clap_count +' times';
+//-       }
+//-       - var yogurt= ['yogurt_flavour','yogurt_quantity','yogurt_price']
+//-   a(href='/yogurt') Click here to search for yogurt
+
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/mobile") Take me to yogurt 
+    br 
+    a(href="/logout") Logout

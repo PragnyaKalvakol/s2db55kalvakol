@@ -1,7 +1,14 @@
 const mongoose = require("mongoose") 
 const yogurtSchema = mongoose.Schema({ 
- yogurt_flavour: String, 
- yogurt_quantity: Number, 
+ yogurt_flavour: {
+     type: String,
+     required: true
+ },
+ yogurt_quantity: {
+     type: Number,
+     min: 2,
+     max: 2000
+ },
  yogurt_cost: Number 
 }) 
  
